@@ -1,6 +1,11 @@
+import React from 'react';
 import Head from 'next/head'
 
-export default function Home() {
+const Home: React.FC = () => {
+
+  let firstName: number = 20;
+  let isLoading: boolean;
+
   return (
     <div className="container">
       <Head>
@@ -10,7 +15,7 @@ export default function Home() {
 
       <main>
         <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+  Welcome to <a href="https://nextjs.org">Next.js! { firstName }</a>
         </h1>
 
         <p className="description">
@@ -207,3 +212,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default Home;
