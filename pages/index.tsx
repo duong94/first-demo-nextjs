@@ -1,5 +1,6 @@
 import React from 'react';
-import Head from 'next/head'
+import Head from 'next/head';
+import Image from '../assets/image_01.jpg';
 
 const Home: React.FC = () => {
 
@@ -11,9 +12,11 @@ const Home: React.FC = () => {
       <Head>
         <title>Create Next App Edit</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="/css/global.css" />
       </Head>
 
       <main>
+        <img src={Image}/>
         <h1 className="title">
   Welcome to <a href="https://nextjs.org">Next.js! { firstName }</a>
         </h1>
