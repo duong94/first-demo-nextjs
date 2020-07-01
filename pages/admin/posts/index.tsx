@@ -1,5 +1,5 @@
 export default function AdminPosts() {
     return (
-        <h1>Admin -> Posts page</h1>
+        <h1>Admin &gt; Posts page</h1>
     )
 }

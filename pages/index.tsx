@@ -16,9 +16,9 @@ const Home: React.FC = () => {
       </Head>
 
       <main>
-        <img src={Image}/>
+        <img src={Image}/> 
         <h1 className="title">
-  Welcome to <a href="https://nextjs.org">Next.js! { firstName }</a>
+          Welcome to <a href="https://nextjs.org">Next.js! {firstName}</a>
         </h1>
 
         <p className="description">
