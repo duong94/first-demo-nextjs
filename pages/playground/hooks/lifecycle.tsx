@@ -1,14 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Button from "../../../components/Button";
 
 
-// Destructing
+// Destructing chay mot lan duy nhat truoc khi render
 const LifeCycleDemo = () => {
-
+    // tuong ung voi constructor
+    useMemo(() => {
+        console.log("useMemo run <-> constructor");
+    },[]);
     
     const [counter, setCounter] = useState(0);
     const [visible, setVisible] = useState(true);
-    const [user, setUser] = useEffect({});
+    const [user, setUser] = useState({
+        firstName: 'Jonh',
+        lastname: 'Smith'
+    });
 
     // useEffect(() => {
     //     // DidMount & DidUpdate
@@ -35,10 +41,12 @@ const LifeCycleDemo = () => {
     }, [visible])
 
 
-    console.log("Trước khi return <=> Render");
+    const fullName = useMemo(() => {
+        return user.firstName + ' ' + user.lastname
+    }, [user]);
     return (
         <div className="container">
-            <h1>Play Ground - Life Cycle - React Hooks</h1>
+            <h1>Play Ground - Life Cycle - React Hooks { fullName }</h1>
             <button onClick={() => {
                 // setCounter(counter +1);
                 setCounter((prevCounter) => {
