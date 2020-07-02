@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import Button from "../../../components/Button";
 
 
@@ -40,19 +40,19 @@ const LifeCycleDemo = () => {
         console.log("Lang nghe su thay doi cua visibsle");
     }, [visible])
 
-
+    // khong duoc lam dung
     const fullName = useMemo(() => {
         return user.firstName + ' ' + user.lastname
     }, [user]);
+
+    const handleIncreateCounter =  useCallback(() =>{
+        setCounter(counter +1);
+    }, [counter])
     return (
         <div className="container">
             <h1>Play Ground - Life Cycle - React Hooks { fullName }</h1>
-            <button onClick={() => {
-                // setCounter(counter +1);
-                setCounter((prevCounter) => {
-                    return prevCounter + 1
-                })
-            }}>Counter Add</button>
+            <button 
+                onClick={handleIncreateCounter} >Counter Add</button>
             <p>{counter}</p>
             
             <button onClick={() => {
