@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import Button from "../../../components/Button";
 
 
@@ -8,7 +8,7 @@ const LifeCycleDemo = () => {
     useMemo(() => {
         console.log("useMemo run <-> constructor");
     },[]);
-    
+    const inputFileEl = useRef(null);    
     const [counter, setCounter] = useState(0);
     const [visible, setVisible] = useState(true);
     const [user, setUser] = useState({
@@ -61,6 +61,21 @@ const LifeCycleDemo = () => {
             {
                 visible && <Button />
             }
+            <hr />
+
+            <input style={{
+                opacity:0,
+                visibility: 'hidden',
+                position: "fixed",
+                left: '-1000px'
+            }}ref={inputFileEl} type="file" />
+
+            <button 
+                onClick={() => {
+                    console.log(inputFileEl.current);
+                    inputFileEl.current.click();
+                }}
+                className="upload">Upload Image</button>
         </div>
     )
 }
