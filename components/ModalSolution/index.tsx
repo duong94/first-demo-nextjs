@@ -3,11 +3,20 @@ import "./modal.scss";
 
 type ModalProps = {
     isVisible?: boolean;
+    onOk?: () => void;
+    onCancel?: () => void;
+    renderFooter?: () => JSX.Element;
 }
 
 const CLASS_DEFAULT = "tcl-modal__wrapper";
 
-const ModalSolution: React.FC<ModalProps> = ({ children, isVisible }) => {
+const ModalSolution: React.FC<ModalProps> = ({ 
+    children, 
+    isVisible,
+    onOk,
+    onCancel,
+    renderFooter
+ }) => {
     const [className, setClassName] = useState(CLASS_DEFAULT);
 
     useEffect(() => {
@@ -20,6 +29,19 @@ const ModalSolution: React.FC<ModalProps> = ({ children, isVisible }) => {
         }
     
     },[ isVisible])
+
+    const _renderFooter = (): JSX.Element => {
+        if(renderFooter) {
+            return renderFooter();
+        }
+
+        return (
+            <>
+                <button className="tcl-modal__cancel" onClick={onCancel}>Cancel</button>
+                <button className="tcl-modal__ok" onClick={onOk}>Ok</button>
+            </>
+        )
+    }
 
     return (
         <div className={className}>
@@ -34,7 +56,7 @@ const ModalSolution: React.FC<ModalProps> = ({ children, isVisible }) => {
                         { children }
                     </div>
                     <div className="tcl-modal__footer">
-
+                        { _renderFooter() }
                     </div>
                 </div>
             </div>
