@@ -1,13 +1,28 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import Button from "../../../components/Button";
+import useConstructor from "../../../custom-hooks/useConstructor";
 
+// Destructing 
+// chay 1 lan duy nhat truoc khi render
+// Cach 1: Tao bien toan cuc isRun -> check dieu kien
 
-// Destructing chay mot lan duy nhat truoc khi render
+// Tao custom Hook -> useContructor
+// -> Nhan vao mot function callback
+// -> function nay chi duoc goi 1 lan duy nhat
+// useConstructor(() => { // hahjjd})
+let isRun = false;
+
 const LifeCycleDemo = () => {
     // tuong ung voi constructor
+    useConstructor(() => {
+        console.log("constructor cach 4");
+    })
+
     useMemo(() => {
-        console.log("useMemo run <-> constructor");
+        console.log("constructor cach 3");
     },[]);
+
+    const isRunHook = useRef(false);
     const inputFileEl = useRef(null);    
     const [counter, setCounter] = useState(0);
     const [visible, setVisible] = useState(true);
@@ -15,6 +30,18 @@ const LifeCycleDemo = () => {
         firstName: 'Jonh',
         lastname: 'Smith'
     });
+
+    if(isRunHook.current === false) {
+        console.log("constructor cach 2");
+
+        isRunHook.current = true;
+    }
+
+    if(isRun === false) {
+        // xu li constructor
+        console.log("Contructor cach 1");
+        isRun = true;
+    }
 
     // useEffect(() => {
     //     // DidMount & DidUpdate
@@ -73,7 +100,9 @@ const LifeCycleDemo = () => {
             <button 
                 onClick={() => {
                     console.log(inputFileEl.current);
-                    inputFileEl.current.click();
+                    //inputFileEl.current.click();
+                    const input = document.querySelector('input[type="file"') as HTMLInputElement;
+                    input.click();
                 }}
                 className="upload">Upload Image</button>
         </div>
