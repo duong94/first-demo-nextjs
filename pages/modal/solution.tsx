@@ -6,20 +6,27 @@ export default function () {
 
     return (
         <div className="container">
-            <ModalTest
-                isVisible={openModal}
-                onOk = {() => {
-                    console.log("Submit Form");
-                }}
-                onCancel = {() => {
-                    setOpenModal(false);
-                }}
-            >
-                <h2>Demo Modal</h2>
-                <form>
-                    <input type="text" />
-                </form>
-            </ModalTest>
+            {
+                openModal && 
+                <ModalTest
+                    isVisible={openModal}
+                    // isRenderCloseIcon={false}
+                    // onOk = {() => {
+                    //     console.log("Submit Form");
+                    // }}
+                    // onCancel = {() => {
+                    //     setOpenModal(false);
+                    // }}
+                    // btnCancelText="Hủy bỏ"
+                    // btnOkText="Submit"
+                >
+                    <h2>Demo Modal</h2>
+                    <form>
+                        <input type="text" />
+                    </form>
+                </ModalTest>
+            }
+            
 
             <button
                 onClick={() => {
